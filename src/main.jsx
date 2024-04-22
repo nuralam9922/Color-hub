@@ -1,51 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import App from './App';
 import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createBrowserRouter } from 'react-router-dom';
-import Random from './pages/Random.jsx';
-import { RouterProvider } from 'react-router-dom';
-import Leaner from './pages/Leaner.jsx';
-import Color from './pages/Color.jsx';
-import ColorDetails from './pages/ColorDetails.jsx';
-import ColorVisualize from './pages/ColorVisualize/ColorVisualize.jsx';
+import Random from './pages/Random';
+import Leaner from './pages/Leaner';
+import Color from './pages/Color';
+import ColorDetails from './pages/ColorDetails';
+import ColorVisualize from './pages/ColorVisualize/ColorVisualize';
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <App />,
-		children: [
-			{
-				path: '/',
-				element: <Random />,
-			},
-			{
-				path: '/color',
-				element: <Color />,
-			},
-			{
-				path: '/leaner',
-				element: <Leaner />,
-			},
-			{
-				path: '/color-visualize',
-				element: <ColorVisualize />,
-			},
-			{
-				path: '/color-det/:color',
-				element: <ColorDetails />,
-			},
-		],
-	},
-]);
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={router} />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<App />}>
+						<Route index element={<Random />} />
+						<Route path="/color" element={<Color />} />
+						<Route path="/leaner" element={<Leaner />} />
+						<Route path="/color-visualize" element={<ColorVisualize />} />
+						<Route path="/color-det/:color" element={<ColorDetails />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
 		</QueryClientProvider>
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById('root')
 );
