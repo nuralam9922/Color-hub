@@ -1,0 +1,32 @@
+.copyText {
+	animation: copy 0.2s linear;
+	-webkit-animation: copy 0.2s linear;
+}
+
+@keyframes copy {
+	0% {
+		transform: scale(0);
+		-webkit-transform: scale(0);
+		-moz-transform: scale(0);
+		-ms-transform: scale(0);
+		-o-transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(0.5);
+		opacity: 0.7;
+		-webkit-transform: scale(0.5);
+		-moz-transform: scale(0.5);
+		-ms-transform: scale(0.5);
+		-o-transform: scale(0.5);
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+	}
+}
