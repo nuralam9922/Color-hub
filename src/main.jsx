@@ -15,19 +15,25 @@ const Color = React.lazy(() => import('./pages/Color'));
 const ColorDetails = React.lazy(() => import('./pages/ColorDetails'));
 const ColorVisualize = React.lazy(() => import('./pages/ColorVisualize/ColorVisualize'));
 
-const routes = createBrowserRouter([
+const routes = createBrowserRouter(
+	[
+		{
+			path: '/',
+			element: <App />,
+			children: [
+				{ path: 'random', element: <Random /> },
+				{ index: true, element: <Color /> },
+				{ path: 'leaner', element: <Leaner /> },
+				{ path: 'color-visualize', element: <ColorVisualize /> },
+				{ path: 'color-det/:color', element: <ColorDetails /> },
+			],
+		},
+	],
+
 	{
-		path: '/',
-		element: <App />,
-		children: [
-			{ path: 'random', element: <Random /> },
-			{ index: true, element: <Color /> },
-			{ path: 'leaner', element: <Leaner /> },
-			{ path: 'color-visualize', element: <ColorVisualize /> },
-			{ path: 'color-det/:color', element: <ColorDetails /> },
-		],
-	},
-]);
+		basename: '/color-hub-six/', // Replace with your actual base URL
+	}
+);
 
 createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
