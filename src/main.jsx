@@ -31,7 +31,7 @@ const routes = createBrowserRouter(
 	],
 
 	{
-		basename: '/color-hub-six/', // Replace with your actual base URL
+		basename: '/color-hub-six.vercel.app/', // Replace with your actual base URL
 	}
 );
 
