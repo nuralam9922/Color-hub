@@ -17,19 +17,19 @@ function Navbar() {
 				<div className="hidden w-full md:block md:w-auto" id="navbar-default">
 					<ul className="flex items-center justify-center gap-5 p-4 text-base">
 						<Link to={'/'}>
-							<li className="cursor-pointer poppins-regular">Random</li>
-						</Link>
-						<Link to={'/color'}>
 							<li className="cursor-pointer poppins-regular">Colors</li>
 						</Link>
-						<Link to={'/color-visualize'}>
-							<li className="cursor-pointer poppins-regular">Color Visualizer</li>
+						<Link to={'/random'}>
+							<li className="cursor-pointer poppins-regular">Random</li>
 						</Link>
 						<Link to={'/leaner'}>
 							<li className="cursor-pointer poppins-regular">Leaner</li>
 						</Link>
 						<li className="cursor-pointer poppins-regular">Radial</li>
 						<li className="cursor-pointer poppins-regular">Gradient</li>
+						<Link to={'/color-visualize'}>
+							<li className="cursor-pointer poppins-regular">Color Visualizer</li>
+						</Link>
 					</ul>
 				</div>
 			</div>

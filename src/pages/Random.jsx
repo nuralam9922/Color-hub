@@ -3,44 +3,53 @@ import Cart from '../components/cart/Cart';
 
 import { BiLoader } from 'react-icons/bi';
 import { useGetRandomHexColors } from '../hooks/useGetRandomHexColors';
-import { useEffect } from 'react';
+
+import randomColor from 'randomcolor';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useEffect } from 'react';
+import GenerateBtn from '../components/GenerateBtn';
 
 function Radome() {
+	const [number, setNumber] = useState(100);
+	const [toggle, setToggle] = useState(true);
+
 	const generateNewColors = () => {
-		window.location.reload();
+		setToggle((prev) => !prev);
 	};
+
+	const [colors, generateRandomHexColorArray] = useGetRandomHexColors();
+
+	const randomHexColors = colors;
+
+	useEffect(() => {
+		generateRandomHexColorArray(number);
+	}, [toggle]);
+
 	return (
 		<div>
 			{/* //todo:searching */}
-			<div className="w-full flex items-center justify-center py-24 relative">
-				<button
-					onClick={generateNewColors}
-					type="button"
-					className="bg-[#33383e] h-12 px-5 text-xs md:text-base md:px-10 text-white rounded-md flex items-center justify-between gap-3"
-				>
-					<BiLoader />
-					<p>Generate</p>
-				</button>
+			<div className="w-full flex items-center justify-center py-10 relative">
+				<GenerateBtn callback={generateNewColors} />
 			</div>
 			<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full gap-5  ">
 				<>
-					{useGetRandomHexColors(100).map((color, index) => {
-						return (
-							<>
-								<Cart
-									key={index}
-									path={`/color-det/${encodeURIComponent(color)}`}
-									id={index}
-									hexCodeBackgroundColor="#dadada"
-									color={color}
-									background={'none'}
-								/>
-							</>
-						);
-					})}
+					{randomHexColors &&
+						randomHexColors.length > 0 &&
+						randomHexColors?.map((color, index) => {
+							return (
+								<>
+									<Cart
+										key={index + Math.random() + color}
+										path={`/color-det/${encodeURIComponent(color)}`}
+										id={index + Math.random()}
+										hexCodeBackgroundColor="#dadada"
+										color={color}
+										background={'none'}
+									/>
+								</>
+							);
+						})}
 				</>
 			</div>
 		</div>
